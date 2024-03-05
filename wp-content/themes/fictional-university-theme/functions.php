@@ -5,7 +5,12 @@ function fictional_university_script(){
     wp_enqueue_style('fictional-style-index',get_theme_file_uri('build/style-index.css'));
     wp_enqueue_style('fictional-index',get_theme_file_uri('build/index.css'));
 
-    wp_enqueue_script('fictional-js',get_theme_file_uri('build/index.js'),'jQuery','1.0',true);
+    wp_enqueue_script('fictional-js',get_theme_file_uri('build/index.js'),array('jquery'),'1.0',true);
 }
 add_action('wp_enqueue_scripts','fictional_university_script');
+
+function theme_slug_setup() {
+    add_theme_support( 'title-tag' );
+}
+add_action( 'after_setup_theme', 'theme_slug_setup' );
 ?>
