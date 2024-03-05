@@ -21,6 +21,7 @@ while (have_posts())
     <?php 
       $getChildyes = get_post_field( 'post_parent' );
       $CurrentParentpage = get_pages('child_of=' . get_the_ID());
+      
       if($getChildyes){
      ?>
         <div class="metabox metabox--position-up metabox--with-home-link">
@@ -39,7 +40,7 @@ while (have_posts())
             <?php 
               if($parentId){
                  $getChild = $parentId;
-              }else if($getChildyes = get_the_ID()){
+              }elseif($CurrentParentpage){
                 $getChild = get_the_ID();
               }
               wp_list_pages( 'title_li=&child_of='.$getChild ); ?>
@@ -48,18 +49,7 @@ while (have_posts())
         </div>
       <?php } ?>
 
-      <div class="generic-content">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia voluptates vero vel temporibus aliquid possimus, facere accusamus modi. Fugit saepe et autem, laboriosam earum reprehenderit illum odit nobis, consectetur dicta. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos molestiae, tempora alias atque vero officiis sit commodi ipsa vitae impedit odio repellendus doloremque quibusdam quo, ea veniam, ad quod sed.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia voluptates vero vel temporibus aliquid possimus, facere accusamus modi. Fugit saepe et autem, laboriosam earum reprehenderit illum odit nobis, consectetur dicta. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos molestiae, tempora alias atque vero officiis sit commodi ipsa vitae impedit odio repellendus doloremque quibusdam quo, ea veniam, ad quod sed.</p>
-      </div>
-    </div>
-
-    <div class="page-section page-section--beige">
-      <div class="container container--narrow generic-content">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia voluptates vero vel temporibus aliquid possimus, facere accusamus modi. Fugit saepe et autem, laboriosam earum reprehenderit illum odit nobis, consectetur dicta. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos molestiae, tempora alias atque vero officiis sit commodi ipsa vitae impedit odio repellendus doloremque quibusdam quo, ea veniam, ad quod sed.</p>
-
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia voluptates vero vel temporibus aliquid possimus, facere accusamus modi. Fugit saepe et autem, laboriosam earum reprehenderit illum odit nobis, consectetur dicta. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos molestiae, tempora alias atque vero officiis sit commodi ipsa vitae impedit odio repellendus doloremque quibusdam quo, ea veniam, ad quod sed.</p>
-      </div>
+      <div class="generic-content"><?php the_content(); ?></div>
     </div>
 
     <div class="page-section page-section--white">
