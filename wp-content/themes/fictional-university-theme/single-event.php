@@ -2,6 +2,7 @@
 while (have_posts())
 {
     the_post();
+    pageBanner(array('sub_title' => 'Learn how the school of your dreams got started.'));
 ?>
 
 <div class="page-banner">

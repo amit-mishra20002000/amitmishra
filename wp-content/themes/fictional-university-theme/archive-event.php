@@ -14,30 +14,10 @@
   <?php 
     while(have_posts()){ 
       the_post();
-    ?>
-    <div class="event-summary">
-      <a class="event-summary__date t-center" href="#">
-        <span class="event-summary__month">Mar</span>
-        <span class="event-summary__day">25</span>
-      </a>
-      <div class="event-summary__content">
-        <h5 class="event-summary__title headline headline--tiny"><a href="<?php the_permalink(); ?>"><?php echo get_the_title(); ?></a></h5>
-        <p>
-          <?php 
-              if(get_the_content()){
-                echo wp_trim_words( get_the_content(), 10, '...' );
-              }else{
-                echo get_the_excerpt();
-              }
-            ?> 
-          <a href="<?php the_permalink(); ?>" class="nu gray">Learn more</a>
-        </p>
-      </div>
-    </div>  
-  <?php 
+      get_template_part('template-parts/content','event');
     }
 
   ?>
-  <!-- <p>Looking for a recap of past events? <a href="<?php echo site_url('past-events/'); ?>">Checkout you past events archive</a></p> -->
+  <p>Looking for a recap of past events? <a href="<?php echo site_url('past-events/'); ?>">Checkout you past events archive</a></p>
 </div>
 <?php get_footer(); ?>

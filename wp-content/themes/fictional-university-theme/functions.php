@@ -1,4 +1,33 @@
 <?php
+
+function pageBanner($args = NULL){
+    if(!isset($args['title'])){
+        $args['title'] = get_the_title();
+    }
+    if(!isset($args['sub_title'])){
+        $args['sub_title'] = get_field('page_banner_sub_title');
+    }
+    if(!isset($args['photo'])){
+        if(get_field('page_banner_background_image')){
+            $args['photo'] = get_field('page_banner_background_image')['sizes']['PageBanner'];
+        }else{
+            $args['photo'] = get_theme_file_uri('images/ocean.jpg');
+        }
+    }
+?>
+    <div class="page-banner">
+        <div class="page-banner__bg-image" style="background-image: url(<?php echo $args['photo'] ?>)"></div>
+            <div class="page-banner__content container container--narrow">
+                <h1 class="page-banner__title"><?php echo  $args['title'] ?></h1>
+                <div class="page-banner__intro">
+                    <p><?php echo $args['sub_title']; ?></p>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php
+}
+
 function fictional_university_script(){
     wp_enqueue_style('google-font','//fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i|Roboto:100,300,400,400i,700,700i');
     wp_enqueue_style('bootstrapcdn','//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
