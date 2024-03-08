@@ -25,8 +25,47 @@ while (have_posts())
         </div>
       <div class="generic-content"><?php the_content(); ?></div>
       <hr class="section-break"/>
-      
+      <h2>Professor of <?php echo get_the_title(); ?></h2>
+      <ul class="professors-cards">
       <?php
+
+        $professor_args = array(
+          'post_type' => 'professor',
+          'post_status' => 'publish',
+          'posts_per_page' => -1,
+          'orderby' => 'title',
+          'order' => 'ASC',
+          'meta_query' => array(
+            
+            array(
+              'key' => 'related_programs',
+              'compare' => 'LIKE',
+              'value' => '"'.get_the_ID().'"'
+            )
+          ),
+        );
+        $professor_query = new WP_Query( $professor_args );
+        if($professor_query->have_posts()){
+          while ( $professor_query->have_posts() ) : $professor_query->the_post();
+         
+      ?>
+        <li class="professor-card__list-item">
+          <a class="professor-card" href="<?php the_permalink(); ?>">
+            <img class="professor-card__image" src=<?php the_post_thumbnail_url('professorLandscspe'); ?> />
+            <span class="professor-card__name"><?php echo get_the_title(); ?></span>
+          </a>
+        </li>
+            
+      <?php
+         endwhile;
+        }
+         wp_reset_postdata();
+        ?>
+        </ul>
+       <hr class="section-break"/>
+       
+        <?php
+
          $event_args = array(
           'post_type' => 'event',
           'post_status' => 'publish',
