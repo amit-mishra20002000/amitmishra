@@ -1,4 +1,23 @@
 <?php
+require get_theme_file_path('/inc/universityRestData.php');
+
+add_action( 'rest_api_init', 'addAuthorName' );
+function addAuthorName() {
+    register_rest_field(
+        'post', 
+        'authotName',
+        array(
+            'get_callback'    => 'getAuthorName',
+        )
+    );
+}
+
+function getAuthorName(){
+    return get_author_name();
+}
+
+
+
 
 function pageBanner($args = NULL){
     if(!isset($args['title'])){

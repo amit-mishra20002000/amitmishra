@@ -56,7 +56,7 @@ class Search {
         const combineResults = posts[0].concat(pages[0],event[0]);
         this.searchResults.html(`<h2 class="search-overlay__section-title">General Information</h2></h2>
             ${combineResults.length ? '<ul class="link-list min-list">' : '<p>No general information matches that search.</p>'}
-            ${combineResults.map( item => `<li><a href="${item.link}">${item.title.rendered}</a></li>`).join("")}
+            ${combineResults.map( item => `<li><a href="${item.link}">${item.title.rendered}</a> ${item.type == 'post' ? `by ${item.authotName}`: ' ' }</li>`).join("")}
             ${combineResults.length ? '</ul>' : ''}
           `)
           this.isSpinnerVisible = false;
