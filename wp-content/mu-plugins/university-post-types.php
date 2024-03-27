@@ -2,6 +2,8 @@
 function university_post_type() {
 	register_post_type('event',
 		array(
+            'capability_type' => 'event',
+            'map_meta_cap' => true,
             'public' => true,
             'has_archive' => true,
             'rewrite' => array('slug' => 'events'),
